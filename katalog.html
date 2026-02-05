@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog kovových regálů | Regálov.cz - Slevy až 40%</title>
+  <meta name="description" content="Kompletní katalog kovových regálů na Regálov.cz. Více než 400 produktů, slevy až 40%, 7 let záruka. Filtrujte podle rozměrů, barev a ceny.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            regal: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d', 950: '#0d1f12' },
+            steel: { 100: '#f1f5f9', 200: '#e2e8f0', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 800: '#1e293b', 900: '#0f172a' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .promo-bar { background: linear-gradient(90deg, #166534, #22c55e, #166534); background-size: 200% 100%; animation: promoPulse 4s ease infinite; }
+    @keyframes promoPulse { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .product-card { transition: all 0.3s; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(13, 31, 18, 0.25); }
+    .badge-sale { background: linear-gradient(135deg, #22c55e, #16a34a); }
+  </style>
+</head>
+<body class="bg-steel-100 font-sans">
+
+<!-- PROMO BAR -->
+<div class="promo-bar text-white text-center py-2.5 px-4 text-sm font-bold">
+  🏭 VSTUPTE DO SVĚTA REGÁLŮ - Slevy až 40% | Doprava ZDARMA nad 2000 Kč
+</div>
+
+<!-- HEADER -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-4">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-14 h-14 bg-gradient-to-br from-regal-700 to-regal-900 rounded-2xl flex items-center justify-center shadow-lg">
+          <span class="text-white text-3xl font-black">R</span>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-steel-900">Regálov<span class="text-regal-600">.cz</span></div>
+          <div class="text-xs text-regal-600 font-semibold uppercase tracking-wider">Svět regálů</div>
+        </div>
+      </a>
+      <a href="https://www.vyprodej-regalu.cz/cart" target="_blank" class="flex items-center gap-2 bg-regal-600 hover:bg-regal-700 text-white px-5 py-3 rounded-xl font-bold">
+        🛒 Košík
+      </a>
+    </div>
+    <nav class="flex gap-1 pb-3 overflow-x-auto">
+      <a href="index.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg">🏠 Úvod</a>
+      <a href="katalog.html" class="px-4 py-2 text-sm font-medium text-regal-700 bg-regal-50 rounded-lg">📦 Všechny regály</a>
+      <a href="regaly-do-garaze.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg">🚗 Do garáže</a>
+      <a href="regaly-do-sklepa.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg">🏚️ Do sklepa</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="py-8">
+  <div class="container mx-auto px-4">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-steel-500 mb-6">
+      <a href="index.html" class="hover:text-regal-600">Úvod</a> → <span class="text-steel-900">Katalog regálů</span>
+    </nav>
+
+    <h1 class="text-3xl md:text-4xl font-black text-steel-900 mb-8">📦 Katalog kovových regálů</h1>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- FILTERS -->
+      <aside class="lg:w-64 flex-shrink-0">
+        <div class="bg-white rounded-2xl p-6 shadow-sm sticky top-32">
+          <h3 class="font-bold text-steel-900 mb-4">🔍 Filtrovat</h3>
+
+          <!-- Height Filter -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-steel-700 mb-2">Výška</h4>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">150 cm</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">180 cm</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">200 cm</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">220 cm</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Color Filter -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-steel-700 mb-2">Barva</h4>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">Černá</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">Bílá</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">Zinkovaný</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">Červená</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">Modrá</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Price Filter -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-steel-700 mb-2">Cena</h4>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">Do 500 Kč</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">500 - 800 Kč</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">800 - 1200 Kč</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded text-regal-600" checked> <span class="text-sm">Nad 1200 Kč</span>
+              </label>
+            </div>
+          </div>
+
+          <button class="w-full bg-regal-600 hover:bg-regal-700 text-white py-2 rounded-lg font-bold">
+            Aplikovat filtry
+          </button>
+        </div>
+      </aside>
+
+      <!-- PRODUCTS GRID -->
+      <div class="flex-1">
+        <div class="flex items-center justify-between mb-6">
+          <p class="text-steel-600">Zobrazeno <strong>400+</strong> produktů</p>
+          <select class="border rounded-lg px-3 py-2 text-sm">
+            <option>Seřadit: Nejprodávanější</option>
+            <option>Cena: Od nejnižší</option>
+            <option>Cena: Od nejvyšší</option>
+            <option>Nejnovější</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4" id="productsGrid">
+          <!-- Products will be generated here -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center gap-2 mt-8">
+          <button class="px-4 py-2 bg-regal-600 text-white rounded-lg font-medium">1</button>
+          <button class="px-4 py-2 bg-white text-steel-600 rounded-lg font-medium hover:bg-regal-50">2</button>
+          <button class="px-4 py-2 bg-white text-steel-600 rounded-lg font-medium hover:bg-regal-50">3</button>
+          <span class="px-4 py-2">...</span>
+          <button class="px-4 py-2 bg-white text-steel-600 rounded-lg font-medium hover:bg-regal-50">20</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-steel-900 text-white py-12 mt-12">
+  <div class="container mx-auto px-4 text-center">
+    <p class="text-steel-400">© 2026 Regálov.cz - Svět regálů | 7 let záruka na všechny produkty</p>
+  </div>
+</footer>
+
+<!-- Product Data -->
+<script>
+const products = [
+  {h: 150, w: 70, d: 30, color: "Černá", price: 599, slug: "regal-150x70x30-cerna"},
+  {h: 150, w: 70, d: 30, color: "Zinkovaný", price: 549, slug: "regal-150x70x30-zinkovany"},
+  {h: 150, w: 70, d: 30, color: "Bílá", price: 599, slug: "regal-150x70x30-bila"},
+  {h: 180, w: 90, d: 40, color: "Černá", price: 739, slug: "regal-180x90x40-cerna"},
+  {h: 180, w: 90, d: 40, color: "Bílá", price: 739, slug: "regal-180x90x40-bila"},
+  {h: 180, w: 90, d: 40, color: "Zinkovaný", price: 649, slug: "regal-180x90x40-zinkovany"},
+  {h: 180, w: 90, d: 40, color: "Červená", price: 759, slug: "regal-180x90x40-cervena"},
+  {h: 180, w: 90, d: 40, color: "Modrá", price: 759, slug: "regal-180x90x40-modra"},
+  {h: 200, w: 90, d: 40, color: "Černá", price: 849, slug: "regal-200x90x40-cerna"},
+  {h: 180, w: 120, d: 50, color: "Profesionální", price: 1249, slug: "regal-180x120x50-profesionalni"},
+  {h: 180, w: 60, d: 40, color: "Černá", price: 689, slug: "regal-180x60x40-cerna"},
+  {h: 180, w: 40, d: 40, color: "Černá", price: 629, slug: "regal-180x40x40-cerna"},
+  {h: 220, w: 90, d: 45, color: "Černá", price: 899, slug: "regal-220x90x45-cerna"},
+  {h: 150, w: 60, d: 30, color: "Černá", price: 449, slug: "regal-150x60x30-cerna"},
+  {h: 180, w: 70, d: 30, color: "Bílá", price: 579, slug: "regal-180x70x30-bila"},
+  {h: 200, w: 120, d: 50, color: "Zinkovaný", price: 1149, slug: "regal-200x120x50-zinkovany"},
+  {h: 150, w: 40, d: 30, color: "Bílá", price: 429, slug: "regal-150x40x30-bila"},
+  {h: 180, w: 90, d: 50, color: "Červená", price: 849, slug: "regal-180x90x50-cervena"},
+  {h: 220, w: 120, d: 45, color: "Černá", price: 1349, slug: "regal-220x120x45-cerna"},
+  {h: 150, w: 90, d: 40, color: "Bílá", price: 649, slug: "regal-150x90x40-bila"},
+];
+
+const images = {
+  "Černá": "https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-1-regal-1800x900x400-mm-lakovany-5-policovy-nosnost-875-kg-cerny-pravy-18090405875black1.jpeg",
+  "Bílá": "https://vyprodej-regalucz.s26.cdn-upgates.com/6/6690a777ad6edc-1-18090405875white1.jpeg",
+  "Červená": "https://vyprodej-regalucz.s26.cdn-upgates.com/_cache/9/e/9eef5f9f2ad8880b75926a3eae58485b-1-regal-1500x700x300-mm-lakovany-4-policovy-nosnost-700-kg-cerveny-pravy-15070304700red1.jpeg",
+  "Modrá": "https://vyprodej-regalucz.s26.cdn-upgates.com/_cache/1/c/1c64831c1231f5847cf9e7a36f6cdf6f-1-15070304700blue1.jpeg",
+  "Zinkovaný": "https://vyprodej-regalucz.s26.cdn-upgates.com/z/z6914605330838-5-pol-pravy-zink.jpg",
+  "Profesionální": "https://vyprodej-regalucz.s26.cdn-upgates.com/_cache/b/1/b17ce5b491bdb73a0df3160b51fbcf7e-1-regal-1800x1200x500-mm-lakovany-5-policovy-nosnost-1050-kg-modro-oranzovy-pravy-18120501050orangeblue1.jpeg"
+};
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = products.map(p => {
+    const origPrice = Math.round(p.price * 4);
+    const discount = Math.round(100 - (p.price / origPrice * 100));
+    const img = images[p.color] || images["Černá"];
+    return `
+      <a href="${p.slug}.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg">-${discount}%</div>
+          <img src="${img}" alt="Regál ${p.h}×${p.w}×${p.d}" class="w-full aspect-square object-contain bg-steel-50">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 text-sm">Regál ${p.h}×${p.w}×${p.d} cm ${p.color.toLowerCase()}</h3>
+          <p class="text-xs text-steel-500 mb-2">${p.h >= 180 ? 5 : 4}-policový, nosnost ${p.h >= 180 ? 875 : 700} kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="font-black text-regal-600">${p.price} Kč</span>
+              <span class="text-xs text-steel-400 line-through ml-1">${origPrice} Kč</span>
+            </div>
+            <span class="text-xs text-regal-600">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+renderProducts();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regálov.cz - Vstupte do světa regálů | Profesionální kovové regály</title>
+  <meta name="description" content="🏭 Regálov.cz - Váš svět profesionálních regálů. Kovové regály pro garáže, sklepy i dílny. 7 let záruka. Slevy až 40%. Doprava od 99 Kč. Skladem přes 10 000 ks.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            regal: {
+              50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+              400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
+              800: '#166534', 900: '#14532d', 950: '#0d1f12'
+            },
+            accent: {
+              400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309'
+            },
+            steel: {
+              100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8',
+              500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-gradient { background: linear-gradient(135deg, #0d1f12 0%, #14532d 50%, #166534 100%); }
+    .promo-bar { background: linear-gradient(90deg, #166534, #22c55e, #166534); background-size: 200% 100%; animation: promoPulse 4s ease infinite; }
+    @keyframes promoPulse { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .countdown-box { background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+    .product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(13, 31, 18, 0.25); }
+    .product-image { aspect-ratio: 1; object-fit: contain; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
+    .badge-sale { animation: pulseBadge 2s infinite; background: linear-gradient(135deg, #22c55e, #16a34a); }
+    @keyframes pulseBadge { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .cta-button { transition: all 0.2s; box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4); }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5); }
+    .cta-button-accent { box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4); }
+    .cta-button-accent:hover { box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5); }
+    .shine { position: relative; overflow: hidden; }
+    .shine::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%); transform: rotate(30deg); animation: shine 4s infinite; }
+    @keyframes shine { 0% { transform: translateX(-100%) rotate(30deg); } 100% { transform: translateX(100%) rotate(30deg); } }
+    .world-pattern { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .feature-icon { background: linear-gradient(135deg, #166534, #22c55e); }
+    .stock-indicator { animation: blink 1.5s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+  </style>
+</head>
+<body class="bg-steel-100 font-sans">
+
+<!-- PROMO TOP BAR -->
+<div class="promo-bar text-white text-center py-2.5 px-4 text-sm font-bold">
+  <span class="inline-flex items-center gap-2">
+    🏭 VSTUPTE DO SVĚTA REGÁLŮ - Slevy až 40% | Akce končí za:
+    <span id="topCountdown" class="bg-black/30 px-2 py-0.5 rounded font-mono">2d 14:23:45</span>
+    | Doprava ZDARMA nad 2000 Kč
+  </span>
+</div>
+
+<!-- HEADER -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-4">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-14 h-14 bg-gradient-to-br from-regal-700 to-regal-900 rounded-2xl flex items-center justify-center shadow-lg">
+          <span class="text-white text-3xl font-black">R</span>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-steel-900">Regálov<span class="text-regal-600">.cz</span></div>
+          <div class="text-xs text-regal-600 font-semibold uppercase tracking-wider">Svět regálů</div>
+        </div>
+      </a>
+
+      <!-- Search -->
+      <div class="hidden lg:flex flex-1 max-w-xl mx-8 relative">
+        <div class="relative w-full">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Hledat regály... (např. 180 cm, černý, do garáže)"
+            class="w-full border-2 border-steel-200 rounded-xl py-3 px-5 pr-24 focus:border-regal-500 focus:outline-none text-sm transition-colors"
+            autocomplete="off"
+          >
+          <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-regal-600 hover:bg-regal-700 text-white px-5 py-2 rounded-lg font-medium text-sm transition">
+            Hledat
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart -->
+      <div class="flex items-center gap-4">
+        <a href="https://www.vyprodej-regalu.cz/cart" target="_blank" class="flex items-center gap-2 bg-regal-600 hover:bg-regal-700 text-white px-5 py-3 rounded-xl font-bold transition-colors">
+          🛒 Košík <span class="bg-white text-regal-700 text-sm px-2 py-0.5 rounded-full">0</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex gap-1 pb-3 overflow-x-auto">
+      <a href="index.html" class="px-4 py-2 text-sm font-medium text-regal-700 bg-regal-50 rounded-lg whitespace-nowrap">🏠 Úvod</a>
+      <a href="katalog.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg whitespace-nowrap transition-colors">📦 Všechny regály</a>
+      <a href="regaly-do-garaze.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg whitespace-nowrap transition-colors">🚗 Do garáže</a>
+      <a href="regaly-do-sklepa.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg whitespace-nowrap transition-colors">🏚️ Do sklepa</a>
+      <a href="blog.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg whitespace-nowrap transition-colors">📝 Blog</a>
+      <a href="slovnik.html" class="px-4 py-2 text-sm font-medium text-steel-600 hover:text-regal-600 hover:bg-regal-50 rounded-lg whitespace-nowrap transition-colors">📖 Slovník</a>
+      <a href="katalog.html" class="px-4 py-2 text-sm font-medium text-accent-600 bg-accent-50 rounded-lg whitespace-nowrap flex items-center gap-1">
+        🔥 <span>AKCE</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero-gradient text-white relative overflow-hidden">
+  <div class="world-pattern absolute inset-0"></div>
+
+  <div class="container mx-auto px-4 py-16 lg:py-24 relative">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left - Content -->
+      <div class="text-center lg:text-left">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-regal-500/20 border border-regal-400/50 text-regal-300 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          <span class="w-2 h-2 bg-regal-400 rounded-full animate-pulse"></span>
+          VÁŠE BRÁNA DO SVĚTA REGÁLŮ
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight">
+          <span class="text-regal-400">VSTUPTE DO</span><br>
+          <span class="text-white">SVĚTA REGÁLŮ</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl font-semibold text-regal-200 mb-6">
+          Profesionální kovové regály pro každý prostor
+        </p>
+
+        <!-- Key Points -->
+        <div class="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-lg">
+            <span class="text-regal-400 text-xl">✓</span>
+            <span class="font-medium">7 let záruka</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-lg">
+            <span class="text-regal-400 text-xl">✓</span>
+            <span class="font-medium">Pouze nové</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-lg">
+            <span class="text-regal-400 text-xl">✓</span>
+            <span class="font-medium">Slevy až 40%</span>
+          </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown-box inline-flex items-center gap-4 px-6 py-4 rounded-2xl mb-8">
+          <span class="text-regal-300 text-sm">⏰ Akce končí za:</span>
+          <div class="flex gap-2">
+            <div class="text-center">
+              <div class="bg-steel-900 px-3 py-2 rounded-lg text-2xl font-bold" id="days">01</div>
+              <div class="text-xs text-regal-400 mt-1">DNY</div>
+            </div>
+            <span class="text-2xl font-bold self-start pt-2">:</span>
+            <div class="text-center">
+              <div class="bg-steel-900 px-3 py-2 rounded-lg text-2xl font-bold" id="hours">14</div>
+              <div class="text-xs text-regal-400 mt-1">HOD</div>
+            </div>
+            <span class="text-2xl font-bold self-start pt-2">:</span>
+            <div class="text-center">
+              <div class="bg-steel-900 px-3 py-2 rounded-lg text-2xl font-bold" id="minutes">20</div>
+              <div class="text-xs text-regal-400 mt-1">MIN</div>
+            </div>
+            <span class="text-2xl font-bold self-start pt-2">:</span>
+            <div class="text-center">
+              <div class="bg-steel-900 px-3 py-2 rounded-lg text-2xl font-bold" id="seconds">31</div>
+              <div class="text-xs text-regal-400 mt-1">SEK</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+          <a href="katalog.html" class="cta-button shine bg-regal-500 hover:bg-regal-600 text-white px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-2">
+            🏭 Prohlédnout regály →
+          </a>
+          <a href="#kategorie" class="bg-steel-800 hover:bg-steel-700 text-white px-6 py-4 rounded-xl font-bold inline-flex items-center gap-2 transition-colors">
+            📂 Kategorie
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="flex items-center justify-center lg:justify-start gap-6 mt-8 text-sm text-regal-300">
+          <span class="flex items-center gap-1 stock-indicator">
+            <span class="w-2 h-2 bg-regal-400 rounded-full"></span>
+            <strong class="text-white">47</strong> lidí právě nakupuje
+          </span>
+          <span class="flex items-center gap-1">
+            🔥 Dnes <strong class="text-white">123</strong> objednávek
+          </span>
+        </div>
+      </div>
+
+      <!-- Right - Featured Product -->
+      <div class="relative">
+        <div class="bg-white rounded-3xl p-6 shadow-2xl">
+          <div class="absolute -top-4 -right-4 badge-sale text-white text-lg font-black px-4 py-2 rounded-xl shadow-lg">
+            -40%
+          </div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-1-regal-1800x900x400-mm-lakovany-5-policovy-nosnost-875-kg-cerny-pravy-18090405875black1.jpeg"
+               alt="Regál 180x90x40 černý"
+               class="w-full aspect-square object-contain rounded-2xl mb-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-steel-500 text-sm line-through">2636 Kč</p>
+              <p class="text-3xl font-black text-regal-600">489 Kč</p>
+            </div>
+            <div class="text-right">
+              <p class="text-sm text-regal-600 font-semibold stock-indicator">✓ Pouze 47 ks!</p>
+              <p class="text-steel-600 font-medium">Zinkovaný 4-policový</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BADGES -->
+<section class="bg-white py-8 border-b">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="flex items-center gap-3 justify-center">
+        <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl">🛡️</div>
+        <div>
+          <div class="font-bold text-steel-900">7 let záruka</div>
+          <div class="text-sm text-steel-500">Na všechny regály</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 justify-center">
+        <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl">🚚</div>
+        <div>
+          <div class="font-bold text-steel-900">Rychlé doručení</div>
+          <div class="text-sm text-steel-500">Do 3 pracovních dnů</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 justify-center">
+        <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl">📦</div>
+        <div>
+          <div class="font-bold text-steel-900">10 000+ kusů</div>
+          <div class="text-sm text-steel-500">Skladem k odeslání</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 justify-center">
+        <div class="feature-icon w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl">⭐</div>
+        <div>
+          <div class="font-bold text-steel-900">4.9/5 hodnocení</div>
+          <div class="text-sm text-steel-500">Od 2847 zákazníků</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="py-16 bg-steel-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-black text-steel-900 mb-4">
+        🏭 Nejprodávanější regály
+      </h2>
+      <p class="text-steel-600 text-lg max-w-2xl mx-auto">
+        Vyberte si z naší nabídky profesionálních kovových regálů. Všechny produkty jsou nové, nerozbalené a s 7letou zárukou.
+      </p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productsGrid">
+
+      <!-- Product 1 -->
+      <a href="regal-180x90x40-cerna.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-40%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-1-regal-1800x900x400-mm-lakovany-5-policovy-nosnost-875-kg-cerny-pravy-18090405875black1.jpeg"
+               alt="Regál 180×90×40 cm černý" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 180×90×40 cm černý lakovaný</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 875 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">739 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2956 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 2 -->
+      <a href="regal-150x70x30-zinkovany.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-35%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/m/m690377af7480a-1-regal-1500x700x300-mm-zinkovany-4-policovy-nosnost-700-kg-pravy-1507030700zinc1.jpeg"
+               alt="Regál 150×70×30 cm zinkovaný" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 150×70×30 cm zinkovaný</h3>
+          <p class="text-sm text-steel-500 mb-2">4-policový, nosnost 700 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">489 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2636 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 3 -->
+      <a href="regal-180x120x50-profesionalni.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-30%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-4-regal-1800x1200x500-mm-lakovany-5-policovy-nosnost-1050-kg-1.jpeg"
+               alt="Regál 180×120×50 cm profesionální" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 180×120×50 cm profesionální</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 1050 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">1290 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">3690 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 4 -->
+      <a href="regal-150x60x30-cerna.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-38%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-6-regal-1500x600x300-mm-lakovany-4-policovy-nosnost-680-kg-cerny-1.jpeg"
+               alt="Regál 150×60×30 cm černý" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 150×60×30 cm černý kompaktní</h3>
+          <p class="text-sm text-steel-500 mb-2">4-policový, nosnost 680 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">449 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2249 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 5 -->
+      <a href="regal-200x100x50-tezky.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-25%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-1-regal-1800x900x400-mm-lakovany-5-policovy-nosnost-875-kg-cerny-pravy-18090405875black1.jpeg"
+               alt="Regál 200×100×50 cm těžký" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 200×100×50 cm těžký průmyslový</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 1500 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">1890 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">4990 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 6 -->
+      <a href="regal-180x90x40-bila.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-42%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-5-regal-1800x900x400-mm-lakovany-5-policovy-nosnost-875-kg-bily-1.jpeg"
+               alt="Regál 180×90×40 cm bílý" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 180×90×40 cm bílý elegantní</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 875 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">689 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2756 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 7 -->
+      <a href="regal-150x70x45-modra.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-33%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-7-regal-1500x700x450-mm-lakovany-4-policovy-nosnost-800-kg-modry-1.jpeg"
+               alt="Regál 150×70×45 cm modrý" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 150×70×45 cm modrý dílenský</h3>
+          <p class="text-sm text-steel-500 mb-2">4-policový, nosnost 800 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">589 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2389 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 8 -->
+      <a href="regal-180x90x50-cervena.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-36%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-8-regal-1800x900x500-mm-lakovany-5-policovy-nosnost-1000-kg-cerveny-1.jpeg"
+               alt="Regál 180×90×50 cm červený" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 180×90×50 cm červený garáž</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 1000 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">849 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2849 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 9 -->
+      <a href="regal-120x60x30-maly.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-45%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/m/m690377af7480a-1-regal-1500x700x300-mm-zinkovany-4-policovy-nosnost-700-kg-pravy-1507030700zinc1.jpeg"
+               alt="Regál 120×60×30 cm malý" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 120×60×30 cm malý úložný</h3>
+          <p class="text-sm text-steel-500 mb-2">4-policový, nosnost 500 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">349 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">1749 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 10 -->
+      <a href="regal-180x120x60-xxl.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-28%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-4-regal-1800x1200x500-mm-lakovany-5-policovy-nosnost-1050-kg-1.jpeg"
+               alt="Regál 180×120×60 cm XXL" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 180×120×60 cm XXL skladový</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 1200 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">1590 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">4290 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 11 -->
+      <a href="regal-150x90x40-stribrny.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-37%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/m/m690377af7480a-1-regal-1500x700x300-mm-zinkovany-4-policovy-nosnost-700-kg-pravy-1507030700zinc1.jpeg"
+               alt="Regál 150×90×40 cm stříbrný" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 150×90×40 cm stříbrný zinkovaný</h3>
+          <p class="text-sm text-steel-500 mb-2">4-policový, nosnost 750 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">549 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2249 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 12 -->
+      <a href="regal-200x90x45-garaz.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-32%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-1-regal-1800x900x400-mm-lakovany-5-policovy-nosnost-875-kg-cerny-pravy-18090405875black1.jpeg"
+               alt="Regál 200×90×45 cm garáž" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 200×90×45 cm garážový extra</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 950 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">989 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2989 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 13 -->
+      <a href="regal-150x70x30-zelena.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-40%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-9-regal-1500x700x300-mm-lakovany-4-policovy-nosnost-700-kg-zeleny-1.jpeg"
+               alt="Regál 150×70×30 cm zelený" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 150×70×30 cm zelený zahradní</h3>
+          <p class="text-sm text-steel-500 mb-2">4-policový, nosnost 700 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">459 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">1959 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 14 -->
+      <a href="regal-180x80x35-slim.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-39%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-5-regal-1800x900x400-mm-lakovany-5-policovy-nosnost-875-kg-bily-1.jpeg"
+               alt="Regál 180×80×35 cm slim" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 180×80×35 cm slim úzký</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 650 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">619 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2519 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 15 -->
+      <a href="regal-160x70x40-antracit.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-34%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-6-regal-1500x600x300-mm-lakovany-4-policovy-nosnost-680-kg-cerny-1.jpeg"
+               alt="Regál 160×70×40 cm antracit" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 160×70×40 cm antracit modern</h3>
+          <p class="text-sm text-steel-500 mb-2">4-policový, nosnost 720 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">579 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2279 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 16 -->
+      <a href="regal-180x100x50-oranzova.html" class="product-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl">
+        <div class="relative">
+          <div class="absolute top-3 left-3 badge-sale text-white text-xs font-bold px-2 py-1 rounded-lg z-10">-31%</div>
+          <img src="https://vyprodej-regalucz.s26.cdn-upgates.com/l/l690377af7480a-8-regal-1800x900x500-mm-lakovany-5-policovy-nosnost-1000-kg-cerveny-1.jpeg"
+               alt="Regál 180×100×50 cm oranžový" class="product-image w-full">
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-steel-900 mb-1 line-clamp-2">Regál 180×100×50 cm oranžový workshop</h3>
+          <p class="text-sm text-steel-500 mb-2">5-policový, nosnost 950 kg</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-lg font-black text-regal-600">949 Kč</span>
+              <span class="text-sm text-steel-400 line-through ml-1">2949 Kč</span>
+            </div>
+            <span class="text-xs text-regal-600 font-medium">✓ Skladem</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- View All Button -->
+    <div class="text-center mt-12">
+      <a href="katalog.html" class="cta-button inline-flex items-center gap-2 bg-regal-600 hover:bg-regal-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors">
+        Zobrazit všechny regály →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES SECTION -->
+<section id="kategorie" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-black text-steel-900 mb-4">
+        📂 Kategorie regálů
+      </h2>
+      <p class="text-steel-600 text-lg">Vyberte kategorii podle vašich potřeb</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <a href="regaly-do-garaze.html" class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gradient-to-br from-steel-800 to-steel-900">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400')] bg-cover bg-center opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-6">
+          <span class="text-4xl mb-2">🚗</span>
+          <h3 class="text-xl font-bold text-white">Do garáže</h3>
+          <p class="text-steel-300 text-sm">Robustní regály pro vaši garáž</p>
+        </div>
+      </a>
+
+      <a href="regaly-do-sklepa.html" class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gradient-to-br from-steel-800 to-steel-900">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400')] bg-cover bg-center opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-6">
+          <span class="text-4xl mb-2">🏚️</span>
+          <h3 class="text-xl font-bold text-white">Do sklepa</h3>
+          <p class="text-steel-300 text-sm">Skladování potravin a vína</p>
+        </div>
+      </a>
+
+      <a href="regaly-do-dilny.html" class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gradient-to-br from-steel-800 to-steel-900">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400')] bg-cover bg-center opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-6">
+          <span class="text-4xl mb-2">🔧</span>
+          <h3 class="text-xl font-bold text-white">Do dílny</h3>
+          <p class="text-steel-300 text-sm">Profesionální dílenské regály</p>
+        </div>
+      </a>
+
+      <a href="regaly-do-kancelare.html" class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gradient-to-br from-steel-800 to-steel-900">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=400')] bg-cover bg-center opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-6">
+          <span class="text-4xl mb-2">🏢</span>
+          <h3 class="text-xl font-bold text-white">Do kanceláře</h3>
+          <p class="text-steel-300 text-sm">Elegantní archivační regály</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SEO TEXT SECTION -->
+<section class="py-16 bg-steel-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-black text-steel-900 mb-6 text-center">
+        🏭 Regálov.cz – Váš svět profesionálních kovových regálů
+      </h2>
+
+      <div class="prose prose-lg text-steel-700 max-w-none">
+        <p class="lead text-xl mb-6">
+          Vítejte ve světě Regálov.cz, kde najdete profesionální kovové regály pro každý prostor. Specializujeme se na dodávku kvalitních skladových a úložných systémů pro garáže, sklepy, dílny i kanceláře.
+        </p>
+
+        <h3 class="text-xl font-bold text-steel-900 mt-8 mb-4">Proč vybrat regály od Regálov.cz?</h3>
+        <p>
+          Naše kovové regály jsou vyrobeny z kvalitní oceli s povrchovou úpravou, která zajišťuje dlouhou životnost a odolnost proti korozi. Každý regál prochází přísnou kontrolou kvality a je dodáván s <strong>7letou zárukou</strong>.
+        </p>
+
+        <h3 class="text-xl font-bold text-steel-900 mt-8 mb-4">Široký výběr regálů pro každé použití</h3>
+        <p>
+          V naší nabídce najdete regály různých rozměrů a nosností – od kompaktních modelů pro domácí použití až po těžké průmyslové regály s nosností přes 1000 kg. Nabízíme zinkované, lakované i práškově lakované varianty v různých barvách.
+        </p>
+
+        <h3 class="text-xl font-bold text-steel-900 mt-8 mb-4">Snadná montáž bez nářadí</h3>
+        <p>
+          Všechny naše regály jsou navrženy pro snadnou montáž bez potřeby speciálního nářadí. Systém zapadajících spojů umožňuje sestavení regálu během několika minut. Ke každému regálu dodáváme podrobný návod k montáži.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-steel-900 text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-gradient-to-br from-regal-600 to-regal-800 rounded-xl flex items-center justify-center">
+            <span class="text-white text-2xl font-black">R</span>
+          </div>
+          <div>
+            <div class="text-xl font-black">Regálov<span class="text-regal-400">.cz</span></div>
+            <div class="text-xs text-steel-400">Svět regálů</div>
+          </div>
+        </div>
+        <p class="text-steel-400 text-sm">Váš spolehlivý partner pro profesionální kovové regály. 7 let záruky na všechny produkty.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4">Kategorie</h4>
+        <ul class="space-y-2 text-steel-400 text-sm">
+          <li><a href="katalog.html" class="hover:text-regal-400 transition-colors">Všechny regály</a></li>
+          <li><a href="regaly-do-garaze.html" class="hover:text-regal-400 transition-colors">Regály do garáže</a></li>
+          <li><a href="regaly-do-sklepa.html" class="hover:text-regal-400 transition-colors">Regály do sklepa</a></li>
+          <li><a href="regaly-do-dilny.html" class="hover:text-regal-400 transition-colors">Regály do dílny</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4">Informace</h4>
+        <ul class="space-y-2 text-steel-400 text-sm">
+          <li><a href="o-nas.html" class="hover:text-regal-400 transition-colors">O nás</a></li>
+          <li><a href="kontakt.html" class="hover:text-regal-400 transition-colors">Kontakt</a></li>
+          <li><a href="faq.html" class="hover:text-regal-400 transition-colors">Často kladené dotazy</a></li>
+          <li><a href="blog.html" class="hover:text-regal-400 transition-colors">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4">Kontakt</h4>
+        <ul class="space-y-2 text-steel-400 text-sm">
+          <li>📧 info@regalov.cz</li>
+          <li>📞 +420 123 456 789</li>
+          <li>🕐 Po-Pá: 8:00 - 17:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-steel-800 pt-8 text-center text-steel-500 text-sm">
+      <p>© 2026 Regálov.cz - Všechna práva vyhrazena</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Countdown Script -->
+<script>
+  function updateCountdown() {
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 2);
+    endDate.setHours(23, 59, 59);
+
+    const now = new Date();
+    const diff = endDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    document.getElementById('topCountdown').textContent = `${days}d ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+</body>
+</html>
